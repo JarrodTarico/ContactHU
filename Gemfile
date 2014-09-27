@@ -31,6 +31,12 @@ gem 'autoprefixer-rails'
 #Gem to Add Images
 gem "paperclip", "~> 4.2"
 
+#Gem for dropbox; Host images in the cloud
+gem "paperclip-dropbox", ">= 1.1.7"
+
+#Gem for dropbox account protection
+gem "figaro"
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
