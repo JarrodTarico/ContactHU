@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :professors
+
   devise_for :users
   resources :listings
 
