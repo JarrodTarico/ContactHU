@@ -4,6 +4,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      
+      <% if current_user.try(:admin?) %>
       <th>First name</th>
       <th>Last name</th>
       <th>Department</th>
@@ -17,6 +19,14 @@
       <th>Office fax</th>
       <th>Primary email</th>
       <th>Secondary email</th>
+      
+      <% else %>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Department</th>
+      <th>Primary email</th>
+      
+      <% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +34,8 @@
   <tbody>
     <% @professors.each do |professor| %>
       <tr>
+        
+        <% if current_user.try(:admin?) %>
         <td><%= professor.First_Name %></td>
         <td><%= professor.Last_Name %></td>
         <td><%= professor.Department %></td>
@@ -37,6 +49,14 @@
         <td><%= professor.Office_Fax %></td>
         <td><%= professor.Primary_Email %></td>
         <td><%= professor.Secondary_Email %></td>
+        
+        <% else %>
+        <td><%= professor.First_Name %></td>
+        <td><%= professor.Last_Name %></td>
+        <td><%= professor.Department %></td>
+        <td><%= professor.Primary_Email %></td>
+        <% end %>
+        
         <td><%= link_to 'Show', professor %></td>
         <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
         <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
