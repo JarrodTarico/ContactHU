@@ -28,7 +28,7 @@
         <td><%= p_information.OfficeHours %></td>
         
         
-         <% if (current_user.try(:admin?))%>
+         <% if (current_user.try(:admin?)) %>
         <td><%= link_to 'Show', p_information %></td>
         <td><%= link_to 'Edit', edit_p_information_path(p_information) %></td>
         <td><%= link_to 'Destroy', p_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
