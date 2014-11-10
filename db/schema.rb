@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008200411) do
+ActiveRecord::Schema.define(version: 20141110204303) do
+
+  create_table "course_informations", force: true do |t|
+    t.string   "Course_Title"
+    t.integer  "CRN"
+    t.string   "Days"
+    t.string   "Time"
+    t.string   "Roomstring"
+    t.string   "Enrollment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "listings", force: true do |t|
     t.string   "name"
@@ -24,6 +35,48 @@ ActiveRecord::Schema.define(version: 20141008200411) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "p_informations", force: true do |t|
+    t.string   "First_Name"
+    t.string   "Last_Name"
+    t.integer  "Rank"
+    t.string   "Department"
+    t.string   "Room"
+    t.string   "Email"
+    t.string   "Ext"
+    t.string   "OfficeHours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "p_infos", force: true do |t|
+    t.string   "Name"
+    t.integer  "Rank"
+    t.string   "Department"
+    t.string   "Room"
+    t.string   "Email"
+    t.string   "Ext"
+    t.string   "OfficeHours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "professor_schedules", force: true do |t|
+    t.string   "name"
+    t.integer  "rank"
+    t.string   "department"
+    t.integer  "room"
+    t.string   "email"
+    t.integer  "ext"
+    t.string   "Course_Title"
+    t.integer  "CRN"
+    t.string   "meeting_days"
+    t.integer  "time"
+    t.integer  "room_num"
+    t.integer  "enrollment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "professors", force: true do |t|

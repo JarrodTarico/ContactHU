@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :course_informations
+
+  resources :p_informations
+
+  resources :p_infos
+
+  resources :professor_schedules
+
   resources :professors
 
   devise_for :users

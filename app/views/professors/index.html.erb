@@ -56,11 +56,13 @@
         <td><%= professor.Department %></td>
         <td><%= professor.Primary_Email %></td>
         <% end %>
-        
-        <td><%= link_to 'Show', professor %></td>
-        <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
-        <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <% if (current_user.try(:admin?)) or (current_user == professor.id) %>
+            <td><%= link_to 'Show', professor %></td>
+            <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
+            <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+         
     <% end %>
   </tbody>
 </table>
