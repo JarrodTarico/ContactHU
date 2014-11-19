@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
   
   validates :name, presence: true
   
-  has_many :lisitings, dependent: :destroy
+  has_many :p_informations, dependent: :destroy
+  has_many :course_informations, dependent: :destroy
 end

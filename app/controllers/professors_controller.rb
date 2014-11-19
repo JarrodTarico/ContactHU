@@ -1,6 +1,7 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
-
+   before_filter :authenticate_user!
+  
   # GET /professors
   # GET /professors.json
   def index
@@ -25,6 +26,7 @@ class ProfessorsController < ApplicationController
   # POST /professors.json
   def create
     @professor = Professor.new(professor_params)
+    @professor.user_id = current_user.id
 
     respond_to do |format|
       if @professor.save

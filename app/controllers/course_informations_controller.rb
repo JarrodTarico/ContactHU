@@ -1,6 +1,7 @@
 class CourseInformationsController < ApplicationController
   before_action :set_course_information, only: [:show, :edit, :update, :destroy]
-
+   before_filter :authenticate_user!
+  
   # GET /course_informations
   # GET /course_informations.json
   def index
@@ -25,6 +26,7 @@ class CourseInformationsController < ApplicationController
   # POST /course_informations.json
   def create
     @course_information = CourseInformation.new(course_information_params)
+    @course_information.user_id = current_user.id
 
     respond_to do |format|
       if @course_information.save

@@ -1,6 +1,7 @@
 class PInformationsController < ApplicationController
   before_action :set_p_information, only: [:show, :edit, :update, :destroy]
-
+   before_filter :authenticate_user!
+  
   # GET /p_informations
   # GET /p_informations.json
   def index
@@ -25,6 +26,7 @@ class PInformationsController < ApplicationController
   # POST /p_informations.json
   def create
     @p_information = PInformation.new(p_information_params)
+    @p_information.user_id = current_user.id
 
     respond_to do |format|
       if @p_information.save
