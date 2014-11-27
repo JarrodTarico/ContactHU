@@ -2,12 +2,12 @@
 
 <p>
   <strong>First name:</strong>
-  <%= @p_information.First_Name %>
+  <%= "#{current_user.first_name.capitalize}"%>
 </p>
 
 <p>
   <strong>Last name:</strong>
-  <%= @p_information.Last_Name %>
+  <%= "#{current_user.last_name.capitalize}"  %>
 </p>
 
 <p>
@@ -27,7 +27,7 @@
 
 <p>
   <strong>Email:</strong>
-  <%= @p_information.Email %>
+  <%= "#{current_user.email}" %>
 </p>
 
 <p>

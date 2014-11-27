@@ -1,6 +1,8 @@
 class CourseInformationsController < ApplicationController
   before_action :set_course_information, only: [:show, :edit, :update, :destroy]
-   before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :check_user, only: [:edit, :update, :destroy]
+  before_filter :check_user, only: [:edit, :update, :destroy]
   
   # GET /course_informations
   # GET /course_informations.json
@@ -62,6 +64,12 @@ class CourseInformationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+    def check_user
+      unless (@course_information.user == current_user) or (current_user.admin?)
+      redirect_to root_url, alert: "Sorry you are not allowed to view this professor. Speak to admin"
+    end 
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

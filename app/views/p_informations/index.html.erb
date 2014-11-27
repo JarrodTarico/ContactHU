@@ -16,19 +16,23 @@
   </thead>
 
   <tbody>
+  
+    
+    
     <% @p_informations.each do |p_information| %>
       <tr>
-        <td><%= p_information.First_Name %></td>
-        <td><%= p_information.Last_Name %></td>
+        <td> <%= "#{current_user.first_name.capitalize}" %></td>
+      <td> <%= "#{current_user.last_name.capitalize}" %> </td>
         <td><%= p_information.Rank %></td>
         <td><%= p_information.Department %></td>
         <td><%= p_information.Room %></td>
-        <td><%= p_information.Email %></td>
+        
+        <td> <%= "#{current_user.email}" %></td>
         <td><%= p_information.Ext %></td>
         <td><%= p_information.OfficeHours %></td>
         
         
-         <% if (current_user.try(:admin?)) %>
+         <% if (current_user.try(:admin?)) or (current_user == p_information.user) %>
         <td><%= link_to 'Show', p_information %></td>
         <td><%= link_to 'Edit', edit_p_information_path(p_information) %></td>
         <td><%= link_to 'Destroy', p_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>

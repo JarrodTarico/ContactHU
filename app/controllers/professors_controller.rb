@@ -1,6 +1,8 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
-   before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :check_user, only: [:edit, :update, :destroy]
+  before_filter :check_user, only: [:edit, :update, :destroy]
   
   # GET /professors
   # GET /professors.json
@@ -68,6 +70,12 @@ class ProfessorsController < ApplicationController
     def set_professor
       @professor = Professor.find(params[:id])
     end
+  
+  def check_user
+    unless (@professor.user == current_user) or (current_user.admin?)
+      redirect_to root_url, alert: "Sorry you are not allowed to view this professor. Speak to admin"
+    end 
+  end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params

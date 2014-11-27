@@ -1,6 +1,8 @@
 class PInformationsController < ApplicationController
   before_action :set_p_information, only: [:show, :edit, :update, :destroy]
-   before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :check_user, only: [:edit, :update, :destroy]
+  before_filter :check_user, only: [:edit, :update, :destroy]
   
   # GET /p_informations
   # GET /p_informations.json
@@ -27,10 +29,11 @@ class PInformationsController < ApplicationController
   def create
     @p_information = PInformation.new(p_information_params)
     @p_information.user_id = current_user.id
+    @p_information.First_Name = current_user.first_name
 
     respond_to do |format|
       if @p_information.save
-        format.html { redirect_to @p_information, notice: 'P information was successfully created.' }
+        format.html { redirect_to @p_information, notice: 'Professor Office Information was successfully created.' }
         format.json { render :show, status: :created, location: @p_information }
       else
         format.html { render :new }
@@ -62,6 +65,12 @@ class PInformationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def check_user
+    unless (@p_information.user == current_user) or (current_user.admin?)
+      redirect_to root_url, alert: "Sorry you are not allowed to view this professor. Speak to admin"
+    end 
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
